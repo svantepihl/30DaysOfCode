@@ -22,9 +22,11 @@ class Solution:
             current = current.next
 
     def removeDuplicates(self,head):
+        previous_nodes = set()
         curr = head
         while curr is not None and curr.next is not None:
-            while curr.next is not None and curr.data is curr.next.data:
+            previous_nodes.add(curr.data)
+            while curr.next is not None and curr.next.data in previous_nodes:
                 curr.next = curr.next.next
             curr = curr.next
         return head
